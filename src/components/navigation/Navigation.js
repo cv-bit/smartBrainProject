@@ -1,12 +1,20 @@
 import React from 'react';
-import './Navigation.css';
 
-const Navigation = ({ onRouteChange }) => {
-    return (
-        <nav className='center'>
-            <p onClick={() => onRouteChange('signin')} className='f1 link grow pa3 pointer'>Sign Out</p>
-        </nav>
-    );
+const Navigation = ({ onRouteChange, isSignedIn}) => {
+    if(isSignedIn) {
+        return (
+            <nav style={{display:'flex', justifyContent:'flex-end'}}>
+                <p onClick={() => onRouteChange('signout')} className='f3 pa3 link black underline grow pointer'>Sign Out</p>
+            </nav>
+        );
+    } else {
+        return (
+            <nav style={{display:'flex', justifyContent:'flex-end'}}>
+                <p onClick={() => onRouteChange('signin')} className='f3 pa3 link black underline grow pointer'>Sign in</p>
+                <p onClick={() => onRouteChange('register')} className='f3 pa3 link black underline grow pointer'>Register</p>
+            </nav>
+        );
+    }
 }
 
 export default Navigation
